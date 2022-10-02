@@ -124,7 +124,7 @@ void Shader::FreeStageObjects()
 	}
 }
 
-void Shader::Use()
+void Shader::Bind()
 {
 	if (bIsCompiled)
 	{

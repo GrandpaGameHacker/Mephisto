@@ -33,6 +33,12 @@
     <ClInclude Include="Source\Private\Assets\ShaderAsset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Private\Assets\ModelAsset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Private\Assets\TextureAsset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Public\App\IApplication.cpp">
@@ -48,6 +54,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Public\Assets\ShaderAsset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Public\Assets\ModelAsset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Public\Assets\TextureAsset.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -40,7 +40,8 @@ public:
     ~Shader();
     void AddStageFile(EShaderStage stage, std::string File);
     bool Compile();
-    void Use();
+    void Bind();
+
     void UseCache(bool bUseCaching);
 	void Set(std::string name, bool value);
 	void Set(std::string name, int value);

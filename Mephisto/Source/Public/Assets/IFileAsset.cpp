@@ -43,9 +43,8 @@ void IFileAsset::LoadInternal(std::filesystem::path filePath, bool bCacheFile)
 		FileDataStream.seekg(0, std::ios::end);
 		Size = FileDataStream.tellg();
 		FileDataStream.seekg(0, std::ios::beg);
-		char* Data = new char[Size];
-		FileDataStream.read(Data, Size);
-		delete[] Data;
+		Data.Bytes = new uint8_t[Size];
+		FileDataStream.read((char*)Data.Bytes, Size);
 	}
 	else if (GetFileMode() == EFileMode::ASCII)
 	{
