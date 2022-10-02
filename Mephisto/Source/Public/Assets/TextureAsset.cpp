@@ -18,7 +18,7 @@ TextureAsset::TextureAsset()
 std::shared_ptr<TextureAsset> TextureAsset::LoadAsset(std::filesystem::path texturePath, GLenum Target,  bool bCacheTexture)
 {
 	auto textureAsset = IFileAsset::LoadAsset<TextureAsset>(texturePath, bCacheTexture);
-
+	textureAsset->Target = Target;
 	unsigned char* textureData = stbi_load_from_memory(
 		textureAsset->Data.Bytes,
 		textureAsset->Size,
@@ -41,7 +41,7 @@ std::shared_ptr<TextureAsset> TextureAsset::LoadCachedAsset(std::filesystem::pat
 	static std::unordered_map<std::string, std::shared_ptr<TextureAsset>> TextureCache;
 	if (!TextureCache.empty())
 	{
-		const auto cachedTexture = TextureCache.find(texturePath.string());
+		const auto cachedTexture = TextureCache.find(texturePath.filename().string());
 		if (cachedTexture != TextureCache.end())
 		{
 			return cachedTexture->second;
