@@ -39,10 +39,19 @@
     <ClInclude Include="Source\Private\Assets\TextureAsset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Private\Utils\Camera\ICamera.h">
+    <ClInclude Include="Source\Private\Camera\ICamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Private\Utils\Camera\BasicCamera.h">
+    <ClInclude Include="Source\Private\Camera\BasicCamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Private\ThirdParty\flecs\flecs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Private\Math\GameMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Private\GUI\IWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,10 +77,19 @@
     <ClCompile Include="Source\Public\Assets\TextureAsset.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Public\Utils\Camera\ICamera.cpp">
+    <ClCompile Include="Source\Public\Camera\ICamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Public\Utils\Camera\BasicCamera.cpp">
+    <ClCompile Include="Source\Public\Camera\BasicCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\ThirdParty\flecs\flecs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Public\Math\GameMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Public\GUI\IWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

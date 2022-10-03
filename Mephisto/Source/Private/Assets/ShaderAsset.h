@@ -23,9 +23,9 @@ class ShaderAsset :
 public:
     friend class Shader;
     ShaderAsset();
-    ShaderAsset(std::string shaderFile, bool bCacheShader = false);
+    ShaderAsset(std::string shaderFile);
     bool Compile();
-    static std::shared_ptr<ShaderAsset> LoadAsset(std::filesystem::path shaderPath, bool bCacheShader = false);
+    static std::shared_ptr<ShaderAsset> LoadAsset(std::filesystem::path shaderPath);
 protected:
     bool bIsCompiled;
     GLuint ShaderObject;
@@ -42,7 +42,6 @@ public:
     bool Compile();
     void Bind();
 
-    void UseCache(bool bUseCaching);
 	void Set(std::string name, bool value);
 	void Set(std::string name, int value);
 	void Set(std::string name, unsigned int value);
@@ -62,6 +61,5 @@ protected:
     void FreeStageObjects();
     std::map<EShaderStage,std::shared_ptr<ShaderAsset>> Stages;
     bool bIsCompiled;
-    bool bUseCaching;
     GLuint ShaderProgram;
 };

@@ -24,7 +24,7 @@ void Mesh::Draw(Shader& shader)
 	unsigned int specularNumber = 1;
 	for (unsigned int i = 0; i < Textures.size(); i++) {
 		std::string number;
-		std::string name = Textures[i]->GetName();
+		std::string name = Textures[i]->GetFileName();
 		if (name == "diffuse") {
 			number = std::to_string(diffuseNumber++);
 		}
@@ -32,13 +32,14 @@ void Mesh::Draw(Shader& shader)
 			number = std::to_string(specularNumber++);
 		}
 		else {
-			spdlog::error("Mesh::Draw()", "Texture not named specular/diffuse");
+			spdlog::error("Mesh::Draw() {}", "Texture not named specular/diffuse");
 		}
 		shader.Set("material." + name + number, i);
 		Textures[i]->Bind(i);
 	}
 	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, Indices.size(), GL_UNSIGNED_INT, 0);
+	GLint size = GLint(Indices.size());
+	glDrawElements(GL_TRIANGLES, size, GL_UNSIGNED_INT, 0);
 }
 
 void Mesh::SetupMesh()
@@ -78,7 +79,7 @@ ModelAsset::~ModelAsset()
 
 std::shared_ptr<ModelAsset> ModelAsset::LoadAsset(std::filesystem::path modelPath)
 {
-	auto asset = IFileAsset::LoadAsset<ModelAsset>(modelPath, false);
+	auto asset = IFileAsset::LoadAsset<ModelAsset>(modelPath);
 	Assimp::Importer import;
 	auto current_path = std::filesystem::current_path();
 	current_path.concat(modelPath.string());
@@ -95,10 +96,13 @@ std::shared_ptr<ModelAsset> ModelAsset::LoadAsset(std::filesystem::path modelPat
 
 std::shared_ptr<ModelAsset> ModelAsset::LoadCachedAsset(std::filesystem::path modelPath)
 {
+	static std::mutex mut;
 	static std::unordered_map <std::string, std::shared_ptr<ModelAsset>> ModelCache;
+	std::scoped_lock lock(mut);
+
 	if (!ModelCache.empty())
 	{
-		const auto cachedModel = ModelCache.find(modelPath.stem().string());
+		const auto cachedModel = ModelCache.find(modelPath.string());
 		if (cachedModel != ModelCache.end())
 		{
 			return cachedModel->second;
@@ -108,11 +112,11 @@ std::shared_ptr<ModelAsset> ModelAsset::LoadCachedAsset(std::filesystem::path mo
 	auto asset = ModelAsset::LoadAsset(modelPath);
 	if (asset)
 	{
-		ModelCache.try_emplace(asset->Name, asset);
+		ModelCache.try_emplace(modelPath.string(), asset);
 	}
-
 	return asset;
 }
+
 
 void ModelAsset::Draw(Shader& shader)
 {

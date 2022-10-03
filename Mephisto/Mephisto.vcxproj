@@ -153,20 +153,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Private\Utils\Camera\BasicCamera.h" />
-    <ClInclude Include="Source\Private\Utils\Camera\ICamera.h" />
+    <ClInclude Include="Source\Private\Camera\BasicCamera.h" />
+    <ClInclude Include="Source\Private\Camera\ICamera.h" />
     <ClInclude Include="Source\Private\Assets\ModelAsset.h" />
     <ClInclude Include="Source\Private\Assets\ShaderAsset.h" />
     <ClInclude Include="Source\Private\Assets\IFileAsset.h" />
     <ClInclude Include="Source\Private\Assets\IStreamableAsset.h" />
     <ClInclude Include="Source\Private\Assets\IAsset.h" />
     <ClInclude Include="Source\Private\App\IApplication.h" />
+    <ClInclude Include="Source\Private\GUI\IWindow.h" />
+    <ClInclude Include="Source\Private\Math\GameMath.h" />
+    <ClInclude Include="Source\Private\ThirdParty\flecs\flecs.h" />
     <ClInclude Include="Source\Private\ThirdParty\STB\stb_image.h" />
     <ClInclude Include="Source\Private\Assets\TextureAsset.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Public\Utils\Camera\BasicCamera.cpp" />
-    <ClCompile Include="Source\Public\Utils\Camera\ICamera.cpp" />
+    <ClCompile Include="Source\Private\ThirdParty\flecs\flecs.c" />
+    <ClCompile Include="Source\Public\Camera\BasicCamera.cpp" />
+    <ClCompile Include="Source\Public\Camera\ICamera.cpp" />
     <ClCompile Include="Source\Public\Assets\ModelAsset.cpp" />
     <ClCompile Include="Source\Public\Assets\ShaderAsset.cpp" />
     <ClCompile Include="Source\Public\Assets\IFileAsset.cpp" />
@@ -174,6 +178,8 @@
     <ClCompile Include="Source\Public\App\IApplication.cpp" />
     <ClCompile Include="Source\Public\Assets\IAsset.cpp" />
     <ClCompile Include="Source\Public\Assets\TextureAsset.cpp" />
+    <ClCompile Include="Source\Public\GUI\IWindow.cpp" />
+    <ClCompile Include="Source\Public\Math\GameMath.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

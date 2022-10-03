@@ -7,7 +7,7 @@ ShaderAsset::ShaderAsset() :
 
 }
 
-ShaderAsset::ShaderAsset(std::string shaderFile, bool bCacheShader) :
+ShaderAsset::ShaderAsset(std::string shaderFile) :
 	ShaderObject(NULL), bIsCompiled(false), Stage(EShaderStage::Invalid)
 {
 	
@@ -16,7 +16,7 @@ ShaderAsset::ShaderAsset(std::string shaderFile, bool bCacheShader) :
 bool ShaderAsset::Compile()
 {
 	if (!bLoaded) {
-		spdlog::error("Shader load failure: {}", Name);
+		spdlog::error("Shader load failure: {}", ID);
 	}
 	auto shaderCode = Data.Text->c_str();
 	switch (Stage)
@@ -62,9 +62,9 @@ bool ShaderAsset::Compile()
 	return true;
 }
 
-std::shared_ptr<ShaderAsset> ShaderAsset::LoadAsset(std::filesystem::path shaderPath, bool bCacheShader)
+std::shared_ptr<ShaderAsset> ShaderAsset::LoadAsset(std::filesystem::path shaderPath)
 {
-	return IFileAsset::LoadAsset<ShaderAsset>(shaderPath, bCacheShader);
+	return IFileAsset::LoadAsset<ShaderAsset>(shaderPath);
 }
 
 Shader::Shader() : 
@@ -82,7 +82,7 @@ void Shader::AddStageFile(EShaderStage stage, std::string File)
 {
 	if (Stages.find(stage) == Stages.end())
 	{
-		auto shader = ShaderAsset::LoadAsset(File, bUseCaching);
+		auto shader = ShaderAsset::LoadAsset(File);
 		
 		shader->Stage = stage;
 		Stages.try_emplace(stage, shader);
@@ -132,11 +132,6 @@ void Shader::Bind()
 	{
 		glUseProgram(ShaderProgram);
 	}
-}
-
-void Shader::UseCache(bool bUseCaching)
-{
-	this->bUseCaching = bUseCaching;
 }
 
 void Shader::Set(std::string name, bool value)
@@ -203,4 +198,3 @@ void Shader::Set(std::string name, glm::mat4& value)
 {
 	glUniformMatrix4fv(glGetUniformLocation(ShaderProgram, name.c_str()), 1, GL_FALSE, &value[0][0]);
 }
-

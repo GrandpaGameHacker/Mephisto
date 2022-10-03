@@ -16,9 +16,9 @@ TextureAsset::TextureAsset()
 	Min = GL_LINEAR;
 }
 
-std::shared_ptr<TextureAsset> TextureAsset::LoadAsset(std::filesystem::path texturePath, GLenum Target,  bool bCacheTexture)
+std::shared_ptr<TextureAsset> TextureAsset::LoadAsset(std::filesystem::path texturePath, GLenum Target)
 {
-	auto textureAsset = IFileAsset::LoadAsset<TextureAsset>(texturePath, bCacheTexture);
+	auto textureAsset = IFileAsset::LoadAsset<TextureAsset>(texturePath);
 	textureAsset->Target = Target;
 	unsigned char* textureData = stbi_load_from_memory(
 		textureAsset->Data.Bytes,
@@ -29,7 +29,7 @@ std::shared_ptr<TextureAsset> TextureAsset::LoadAsset(std::filesystem::path text
 		NULL);
 
 	if (!textureData) {
-		spdlog::error("TextureAsset::LoadAsset() Texture file {} failed to load", textureAsset->Name);
+		spdlog::error("TextureAsset::LoadAsset() Texture file {} failed to load", textureAsset->ID);
 		return nullptr;
 	}
 	textureAsset->LoadOpenGLTexture(textureData);
@@ -42,7 +42,8 @@ std::shared_ptr<TextureAsset> TextureAsset::LoadCachedAsset(std::filesystem::pat
 	static std::unordered_map<std::string, std::shared_ptr<TextureAsset>> TextureCache;
 	if (!TextureCache.empty())
 	{
-		const auto cachedTexture = TextureCache.find(texturePath.stem().string());
+		auto realPath = std::filesystem::current_path().string().append(texturePath.string());
+		const auto cachedTexture = TextureCache.find(realPath);
 		if (cachedTexture != TextureCache.end())
 		{
 			return cachedTexture->second;
@@ -50,7 +51,7 @@ std::shared_ptr<TextureAsset> TextureAsset::LoadCachedAsset(std::filesystem::pat
 	}
 	auto textureAsset = TextureAsset::LoadAsset(texturePath, Target);
 	if (textureAsset) {
-		TextureCache.try_emplace(textureAsset->Name, textureAsset);
+		TextureCache.try_emplace(textureAsset->ID, textureAsset);
 	}
 	return textureAsset;
 }

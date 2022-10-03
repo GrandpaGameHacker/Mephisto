@@ -1,4 +1,4 @@
-#include "Utils/Camera/ICamera.h"
+#include "Camera/ICamera.h"
 #include <spdlog/spdlog.h>
 #include <gl/glew.h>
 #include <glm/gtx/quaternion.hpp>

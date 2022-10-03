@@ -16,16 +16,12 @@ class IAsset
 public:
 	IAsset();
 	virtual ~IAsset();
-	static std::shared_ptr<IAsset> LoadAsset(void* data, size_t size, std::string Name, bool bCacheAsset);
-	static std::shared_ptr<IAsset> GetCached(std::string name);
-	static void TryAddCached(std::shared_ptr<IAsset> asset);
+	static std::shared_ptr<IAsset> LoadAsset(void* data, size_t size, std::string Name);
 	virtual std::string GetType() { return "Asset"; };
-	std::string GetName();
+	std::string GetID();
 protected:
-	static std::unordered_map<std::string, std::shared_ptr<IAsset>> Cache;
-	std::string Name;
+	std::string ID;
 	bool bLoaded = false;
-	bool bCached = false;
 	UData Data;
 	size_t Size = 0;
 };

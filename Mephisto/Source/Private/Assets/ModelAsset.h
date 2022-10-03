@@ -3,7 +3,7 @@
 #include "Assets/TextureAsset.h"
 #include <vector>
 #include <glm/glm.hpp>
-
+#include <mutex>
 #include <assimp/Importer.hpp>
 #include <assimp/Scene.h>
 #include <assimp/PostProcess.h>

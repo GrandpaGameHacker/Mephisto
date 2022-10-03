@@ -17,7 +17,7 @@ std::filesystem::path IFileAsset::GetFilePath() const
 
 std::string IFileAsset::GetFileName() const
 {
-	return Name;
+	return FileStem;
 }
 
 std::string IFileAsset::GetFileExtension() const
@@ -30,12 +30,12 @@ size_t IFileAsset::GetFileSize() const
 	return Size;
 }
 
-void IFileAsset::LoadInternal(std::filesystem::path filePath, bool bCacheFile)
+void IFileAsset::LoadInternal(std::filesystem::path filePath)
 {
+	ID = filePath.string();
 	FilePath = filePath;
-	Name = filePath.stem().string();;
+	FileStem = filePath.stem().string();
 	FileExt = filePath.extension().string();
-	bCached = bCacheFile;
 	if (GetFileMode() == EFileMode::Binary)
 	{
 		std::ifstream FileDataStream(filePath, std::ios::binary);

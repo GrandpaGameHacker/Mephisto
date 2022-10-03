@@ -108,13 +108,13 @@ bool IApplication::IsValid() {
 
 void IApplication::Exit(std::string ExitReason)
 {
-	spdlog::info(ExitReason);
+	spdlog::debug(ExitReason);
 	exit(0);
 }
 
 SDL_Rect IApplication::UpdateScreenRect()
 {
-	int x, y, w, h;
+	int w, h;
 	SDL_GetWindowSize(Window, &w, &h);
 	ScreenRect = { 0, 0,w, h };
 	return ScreenRect;
@@ -179,6 +179,11 @@ void IApplication::Begin()
 		DrawTick();
 		SDL_GL_SwapWindow(Window);
 	}
+}
+
+flecs::world& IApplication::GetECSWorld()
+{
+	return ECSWorld;
 }
 
 void IApplication::EnableWindowsDpiScaling()

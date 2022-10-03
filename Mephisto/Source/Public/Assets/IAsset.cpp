@@ -1,36 +1,23 @@
 #include "Assets/IAsset.h"
 #include <spdlog/spdlog.h>
 
-std::unordered_map<std::string, std::shared_ptr<IAsset>> IAsset::Cache;
-
 IAsset::IAsset()
 {
-	Name = "UNKNOWN";
+	ID = "UNKNOWN";
 	Data.RawData = nullptr;
 }
 IAsset::~IAsset()
 {
-	spdlog::info("Destroying {} -> {}", GetType(), Name);
+	spdlog::info("Destroying {} -> {}", GetType(), ID);
 	if (bLoaded)
 	{
 		delete[] Data.RawData;
-		if (bCached)
-		{
-			Cache.erase(Name);
-		}
 	}
 }
-std::shared_ptr<IAsset> IAsset::LoadAsset(void* data, size_t size, std::string name, bool bCacheAsset)
+std::shared_ptr<IAsset> IAsset::LoadAsset(void* data, size_t size, std::string name)
 {
-	if (!Cache.empty())
-	{
-		auto assetPair= Cache.find(name);
-		if (assetPair != Cache.end()) {
-			return assetPair->second;
-		}
-	}
 	auto asset = std::make_shared<IAsset>();
-	asset->Name = name;
+	asset->ID = name;
 	asset->Size = size;
 	asset->Data.RawData = new uint8_t[size];
 	errno_t ErrorCopyData = memcpy_s(asset->Data.RawData, size, data, size);
@@ -43,32 +30,10 @@ std::shared_ptr<IAsset> IAsset::LoadAsset(void* data, size_t size, std::string n
 		return asset;
 	}
 	asset->bLoaded = true;
-	asset->bCached = bCacheAsset;
-	if (bCacheAsset)
-		Cache.try_emplace(name, asset);
-
 	return asset;
 }
 
-std::shared_ptr<IAsset> IAsset::GetCached(std::string name)
+std::string IAsset::GetID()
 {
-	if (!Cache.empty())
-	{
-		auto assetPair = Cache.find(name);
-		if (assetPair != Cache.end()) {
-			return assetPair->second;
-		}
-	}
-	return nullptr;
-}
-
-void IAsset::TryAddCached(std::shared_ptr<IAsset> asset)
-{
-	asset->bCached = true;
-	Cache.try_emplace(asset->Name, asset);
-}
-
-std::string IAsset::GetName()
-{
-	return Name;
+	return ID;
 }

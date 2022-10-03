@@ -6,7 +6,7 @@ class TextureAsset :
 {
 public:
     TextureAsset();
-	static std::shared_ptr<TextureAsset> LoadAsset(std::filesystem::path texturePath, GLenum Target, bool bCacheTexture = false);
+	static std::shared_ptr<TextureAsset> LoadAsset(std::filesystem::path texturePath, GLenum Target);
 	static std::shared_ptr<TextureAsset> LoadCachedAsset(std::filesystem::path texturePath, GLenum Target);
 	void Bind(GLenum TextureUnit);
 	void SetWrapMode(GLenum S, GLenum T);

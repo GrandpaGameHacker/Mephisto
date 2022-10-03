@@ -1,7 +1,7 @@
 #pragma once
 #include "App/IApplication.h"
 #include "Assets/ModelAsset.h"
-#include <Utils/Camera/BasicCamera.h>
+#include <Camera/BasicCamera.h>
 
 struct GameObject {
     std::shared_ptr<ModelAsset> Model;
@@ -22,6 +22,6 @@ public:
     void EventTick(SDL_Event* event) override;
     Shader GameShader;
     BasicCamera MyCamera;
-    GameObject g1, g2;
+    GameObject GameObject1, GameObject2;
 };
 
