@@ -1,7 +1,15 @@
 #pragma once
 #include "App/IApplication.h"
-#include "Assets/ShaderAsset.h"
-#include "Assets/TextureAsset.h"
+#include "Assets/ModelAsset.h"
+#include <Utils/Camera/BasicCamera.h>
+
+struct GameObject {
+    std::shared_ptr<ModelAsset> Model;
+    glm::vec3 Position;
+    glm::vec3 Rotation;
+    glm::vec3 Scale;
+};
+
 class Game :
     public IApplication
 {
@@ -13,6 +21,7 @@ public:
     void DrawTick() override;
     void EventTick(SDL_Event* event) override;
     Shader GameShader;
-    std::shared_ptr<TextureAsset> Tex;
+    BasicCamera MyCamera;
+    GameObject g1, g2;
 };
 

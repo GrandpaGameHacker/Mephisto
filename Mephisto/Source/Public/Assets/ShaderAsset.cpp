@@ -58,6 +58,7 @@ bool ShaderAsset::Compile()
 		spdlog::error("Shader::Compile() VertexError: {}", logInfo);
 		return false;
 	}
+	bIsCompiled = true;
 	return true;
 }
 
@@ -113,6 +114,7 @@ bool Shader::Compile()
 		spdlog::error("Shader::Compile() Link Error: {}", logInfo);
 		return false;
 	}
+	bIsCompiled = true;
 	return true;
 }
 

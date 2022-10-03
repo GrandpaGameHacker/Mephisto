@@ -10,7 +10,7 @@ IAsset::IAsset()
 }
 IAsset::~IAsset()
 {
-	spdlog::info("Destroying Asset: ", GetType(), " -> ", Name);
+	spdlog::info("Destroying {} -> {}", GetType(), Name);
 	if (bLoaded)
 	{
 		delete[] Data.RawData;
@@ -36,7 +36,7 @@ std::shared_ptr<IAsset> IAsset::LoadAsset(void* data, size_t size, std::string n
 	errno_t ErrorCopyData = memcpy_s(asset->Data.RawData, size, data, size);
 	if (ErrorCopyData)
 	{
-		spdlog::error("[-] IAsset::LoadAsset -> memcpy_s failure\nAsset:", name," - ", size);
+		spdlog::error("IAsset::LoadAsset -> memcpy_s failure\nAsset:{} - {}", name, size);
 		delete[] asset->Data.RawData;
 		asset->Data.RawData = nullptr;
 		asset->bLoaded = false;
@@ -66,4 +66,9 @@ void IAsset::TryAddCached(std::shared_ptr<IAsset> asset)
 {
 	asset->bCached = true;
 	Cache.try_emplace(asset->Name, asset);
+}
+
+std::string IAsset::GetName()
+{
+	return Name;
 }

@@ -39,6 +39,12 @@
     <ClInclude Include="Source\Private\Assets\TextureAsset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Private\Utils\Camera\ICamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Private\Utils\Camera\BasicCamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Public\App\IApplication.cpp">
@@ -60,6 +66,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Public\Assets\TextureAsset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Public\Utils\Camera\ICamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Public\Utils\Camera\BasicCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

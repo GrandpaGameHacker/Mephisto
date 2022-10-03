@@ -153,6 +153,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Private\Utils\Camera\BasicCamera.h" />
+    <ClInclude Include="Source\Private\Utils\Camera\ICamera.h" />
     <ClInclude Include="Source\Private\Assets\ModelAsset.h" />
     <ClInclude Include="Source\Private\Assets\ShaderAsset.h" />
     <ClInclude Include="Source\Private\Assets\IFileAsset.h" />
@@ -163,6 +165,8 @@
     <ClInclude Include="Source\Private\Assets\TextureAsset.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Public\Utils\Camera\BasicCamera.cpp" />
+    <ClCompile Include="Source\Public\Utils\Camera\ICamera.cpp" />
     <ClCompile Include="Source\Public\Assets\ModelAsset.cpp" />
     <ClCompile Include="Source\Public\Assets\ShaderAsset.cpp" />
     <ClCompile Include="Source\Public\Assets\IFileAsset.cpp" />

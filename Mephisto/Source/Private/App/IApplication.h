@@ -19,7 +19,7 @@ public:
 	bool IsRunning();
 	bool IsInitialized();
 
-	SDL_Rect GetScreenRect() const;
+	SDL_Rect UpdateScreenRect();
 	glm::ivec2 GetDrawableSize() const;
 
 	float GetDeltaTime();

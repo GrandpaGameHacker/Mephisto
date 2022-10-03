@@ -17,8 +17,6 @@ public:
 protected:
 	EFileMode GetFileMode() override { return EFileMode::Binary; }
 	void LoadOpenGLTexture(void* textureData);
-	std::string FilePath;
-	std::string FileName;
 	GLenum Target;
 	GLuint Object;
 	GLenum WrapS, WrapT, Mag, Min;

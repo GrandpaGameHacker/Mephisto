@@ -27,7 +27,6 @@ bool IApplication::Create(const char* Title, SDL_Rect Dimensions, unsigned int F
 		WindowCreationError("SDL_Init(SDL_INIT_EVERYTHING) Failed");
 		return false;
 	}
-	spdlog::info("SDL_Init() Success");
 	
 	Window = SDL_CreateWindow(Title, Dimensions.x, Dimensions.y, Dimensions.w, Dimensions.h,
 		Flags | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI);
@@ -37,6 +36,9 @@ bool IApplication::Create(const char* Title, SDL_Rect Dimensions, unsigned int F
 		WindowCreationError("SDL_CreateWindow Failed");
 		return false;
 	}
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
 	GLContext = SDL_GL_CreateContext(Window);
 	if (!GLContext)
@@ -44,7 +46,8 @@ bool IApplication::Create(const char* Title, SDL_Rect Dimensions, unsigned int F
 		WindowCreationError("SDL_GL_CreateContext Failed");
 		return false;
 	}
-
+	spdlog::info("App Window \"{}\" created successfully", Title);
+	UpdateScreenRect();
 	glewInit();
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
@@ -109,8 +112,11 @@ void IApplication::Exit(std::string ExitReason)
 	exit(0);
 }
 
-SDL_Rect IApplication::GetScreenRect() const
+SDL_Rect IApplication::UpdateScreenRect()
 {
+	int x, y, w, h;
+	SDL_GetWindowSize(Window, &w, &h);
+	ScreenRect = { 0, 0,w, h };
 	return ScreenRect;
 }
 
@@ -169,7 +175,7 @@ void IApplication::Begin()
 			EventTick(&event);
 		}
 		AppTick();
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);;
 		DrawTick();
 		SDL_GL_SwapWindow(Window);
 	}
@@ -277,13 +283,11 @@ void IApplication::WindowEventDispatch(SDL_Event* event)
 	}
 }
 
+// Needs a refactor if you want to support multiple viewport cameras
 void IApplication::OnWindowResize(SDL_Event* event)
 {
-	auto screen = GetDrawableSize();
-	int x, y;
-	SDL_GetWindowPosition(Window, &x, &y);
-	ScreenRect = { x,y,screen.x, screen.y };
-	glViewport(x, y, screen.x, screen.y);
+	UpdateScreenRect();
+	glViewport(ScreenRect.x, ScreenRect.x, ScreenRect.w, ScreenRect.h);
 }
 
 void IApplication::OnWindowClose(SDL_Event* event)

@@ -33,8 +33,8 @@ size_t IFileAsset::GetFileSize() const
 void IFileAsset::LoadInternal(std::filesystem::path filePath, bool bCacheFile)
 {
 	FilePath = filePath;
-	Name = filePath.filename().string();
-	FileExt = filePath.stem().string();
+	Name = filePath.stem().string();;
+	FileExt = filePath.extension().string();
 	bCached = bCacheFile;
 	if (GetFileMode() == EFileMode::Binary)
 	{
@@ -45,6 +45,7 @@ void IFileAsset::LoadInternal(std::filesystem::path filePath, bool bCacheFile)
 		FileDataStream.seekg(0, std::ios::beg);
 		Data.Bytes = new uint8_t[Size];
 		FileDataStream.read((char*)Data.Bytes, Size);
+		bLoaded = true;
 	}
 	else if (GetFileMode() == EFileMode::ASCII)
 	{

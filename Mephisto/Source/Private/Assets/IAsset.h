@@ -20,6 +20,7 @@ public:
 	static std::shared_ptr<IAsset> GetCached(std::string name);
 	static void TryAddCached(std::shared_ptr<IAsset> asset);
 	virtual std::string GetType() { return "Asset"; };
+	std::string GetName();
 protected:
 	static std::unordered_map<std::string, std::shared_ptr<IAsset>> Cache;
 	std::string Name;

@@ -13,6 +13,7 @@ TextureAsset::TextureAsset()
 	WrapS = GL_REPEAT;
 	WrapT = GL_REPEAT;
 	Mag = GL_LINEAR;
+	Min = GL_LINEAR;
 }
 
 std::shared_ptr<TextureAsset> TextureAsset::LoadAsset(std::filesystem::path texturePath, GLenum Target,  bool bCacheTexture)
@@ -28,7 +29,7 @@ std::shared_ptr<TextureAsset> TextureAsset::LoadAsset(std::filesystem::path text
 		NULL);
 
 	if (!textureData) {
-		spdlog::error("TextureAsset::LoadAsset() Texture file {} failed to load", textureAsset->FileName);
+		spdlog::error("TextureAsset::LoadAsset() Texture file {} failed to load", textureAsset->Name);
 		return nullptr;
 	}
 	textureAsset->LoadOpenGLTexture(textureData);
@@ -41,7 +42,7 @@ std::shared_ptr<TextureAsset> TextureAsset::LoadCachedAsset(std::filesystem::pat
 	static std::unordered_map<std::string, std::shared_ptr<TextureAsset>> TextureCache;
 	if (!TextureCache.empty())
 	{
-		const auto cachedTexture = TextureCache.find(texturePath.filename().string());
+		const auto cachedTexture = TextureCache.find(texturePath.stem().string());
 		if (cachedTexture != TextureCache.end())
 		{
 			return cachedTexture->second;
