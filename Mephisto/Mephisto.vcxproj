@@ -71,12 +71,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)\Source\Private;$(IncludePath)</IncludePath>
-    <PublicIncludeDirectories>$(ProjectDir)\Source\Private;</PublicIncludeDirectories>
+    <IncludePath>$(ProjectDir)\Source\Public;$(IncludePath)</IncludePath>
+    <PublicIncludeDirectories>$(ProjectDir)\Source\Public;</PublicIncludeDirectories>
     <AllProjectIncludesArePublic>true</AllProjectIncludesArePublic>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)\Source\Private;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\Source\Public;$(IncludePath)</IncludePath>
+    <PublicIncludeDirectories>$(ProjectDir)\Source\Public;</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <VcpkgUseStatic>false</VcpkgUseStatic>
@@ -153,38 +154,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Private\Camera\BasicCamera.h" />
-    <ClInclude Include="Source\Private\Camera\ICamera.h" />
-    <ClInclude Include="Source\Private\Assets\ModelAsset.h" />
-    <ClInclude Include="Source\Private\Assets\ShaderAsset.h" />
-    <ClInclude Include="Source\Private\Assets\IFileAsset.h" />
-    <ClInclude Include="Source\Private\Assets\IStreamableAsset.h" />
-    <ClInclude Include="Source\Private\Assets\IAsset.h" />
-    <ClInclude Include="Source\Private\App\IApplication.h" />
-    <ClInclude Include="Source\Private\GUI\Backend\imgui_impl_opengl3.h" />
-    <ClInclude Include="Source\Private\GUI\Backend\imgui_impl_opengl3_loader.h" />
-    <ClInclude Include="Source\Private\GUI\Backend\imgui_impl_sdl.h" />
-    <ClInclude Include="Source\Private\GUI\IWindow.h" />
-    <ClInclude Include="Source\Private\Math\GameMath.h" />
-    <ClInclude Include="Source\Private\ThirdParty\flecs\flecs.h" />
-    <ClInclude Include="Source\Private\ThirdParty\STB\stb_image.h" />
-    <ClInclude Include="Source\Private\Assets\TextureAsset.h" />
+    <ClInclude Include="Source\Public\Camera\BasicCamera.h" />
+    <ClInclude Include="Source\Public\Camera\ICamera.h" />
+    <ClInclude Include="Source\Public\Assets\ModelAsset.h" />
+    <ClInclude Include="Source\Public\Assets\ShaderAsset.h" />
+    <ClInclude Include="Source\Public\Assets\IFileAsset.h" />
+    <ClInclude Include="Source\Public\Assets\IStreamableAsset.h" />
+    <ClInclude Include="Source\Public\Assets\IAsset.h" />
+    <ClInclude Include="Source\Public\App\IApplication.h" />
+    <ClInclude Include="Source\Public\GUI\Backend\imgui_impl_opengl3.h" />
+    <ClInclude Include="Source\Public\GUI\Backend\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="Source\Public\GUI\Backend\imgui_impl_sdl.h" />
+    <ClInclude Include="Source\Public\GUI\IWindow.h" />
+    <ClInclude Include="Source\Public\Math\GameMath.h" />
+    <ClInclude Include="Source\Public\ThirdParty\flecs\flecs.h" />
+    <ClInclude Include="Source\Public\ThirdParty\STB\stb_image.h" />
+    <ClInclude Include="Source\Public\Assets\TextureAsset.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Private\ThirdParty\flecs\flecs.c" />
-    <ClCompile Include="Source\Public\Camera\BasicCamera.cpp" />
-    <ClCompile Include="Source\Public\Camera\ICamera.cpp" />
-    <ClCompile Include="Source\Public\Assets\ModelAsset.cpp" />
-    <ClCompile Include="Source\Public\Assets\ShaderAsset.cpp" />
-    <ClCompile Include="Source\Public\Assets\IFileAsset.cpp" />
-    <ClCompile Include="Source\Public\Assets\IStreamableAsset.cpp" />
-    <ClCompile Include="Source\Public\App\IApplication.cpp" />
-    <ClCompile Include="Source\Public\Assets\IAsset.cpp" />
-    <ClCompile Include="Source\Public\Assets\TextureAsset.cpp" />
-    <ClCompile Include="Source\Public\GUI\Backend\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="Source\Public\GUI\Backend\imgui_impl_sdl.cpp" />
-    <ClCompile Include="Source\Public\GUI\IWindow.cpp" />
-    <ClCompile Include="Source\Public\Math\GameMath.cpp" />
+    <ClCompile Include="Source\Public\ThirdParty\flecs\flecs.c" />
+    <ClCompile Include="Source\Private\Camera\BasicCamera.cpp" />
+    <ClCompile Include="Source\Private\Camera\ICamera.cpp" />
+    <ClCompile Include="Source\Private\Assets\ModelAsset.cpp" />
+    <ClCompile Include="Source\Private\Assets\ShaderAsset.cpp" />
+    <ClCompile Include="Source\Private\Assets\IFileAsset.cpp" />
+    <ClCompile Include="Source\Private\Assets\IStreamableAsset.cpp" />
+    <ClCompile Include="Source\Private\App\IApplication.cpp" />
+    <ClCompile Include="Source\Private\Assets\IAsset.cpp" />
+    <ClCompile Include="Source\Private\Assets\TextureAsset.cpp" />
+    <ClCompile Include="Source\Private\GUI\Backend\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Source\Private\GUI\Backend\imgui_impl_sdl.cpp" />
+    <ClCompile Include="Source\Private\GUI\IWindow.cpp" />
+    <ClCompile Include="Source\Private\Math\GameMath.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

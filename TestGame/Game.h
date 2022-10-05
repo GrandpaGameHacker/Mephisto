@@ -1,8 +1,8 @@
 #pragma once
 #include "App/IApplication.h"
 #include "Assets/ModelAsset.h"
-#include <Camera/BasicCamera.h>
-#include <GUI/IWindow.h>
+#include "Camera/BasicCamera.h"
+#include "GUI/IWindow.h"
 
 struct GameObject {
 	std::shared_ptr<ModelAsset> Model;
