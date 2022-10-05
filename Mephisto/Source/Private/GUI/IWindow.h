@@ -1,16 +1,22 @@
 #pragma once
 #include <vector>
 #include <imgui.h>
+
 class IWindow
 {
 public:
-	IWindow() : bVisible(false) {}
-	virtual ~IWindow() {};
+	IWindow();
+	virtual ~IWindow();
+	bool operator==(const IWindow& RHS);
+	virtual void Tick();
 	virtual void Draw() = 0;
-	bool IsVisible() { return bVisible; };
-	bool ToggleVisible() { bVisible = !bVisible; return bVisible; }
-	
+	bool IsEnabled() { return bEnabled; };
+	bool ToggleEnabled() { bEnabled = !bEnabled; return bEnabled; }
+
+	static void DrawGUI();
+protected:
+	static std::vector<IWindow*> DrawList;
 private:
-	bool bVisible;
-	static std::vector<IWindow> Windows;
+	size_t WindowID;
+	bool bEnabled;
 };

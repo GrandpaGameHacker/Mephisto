@@ -1,9 +1,13 @@
 #include "App/IApplication.h"
-
-
+#include "GUI/Backend/imgui_impl_opengl3.h"
+#include "GUI/Backend/imgui_impl_sdl.h"
+#include "GUI/IWindow.h"
 IApplication::~IApplication()
 {
     spdlog::info("Application:"+ Name+ " - Is Being Destroyed");
+	ImGui_ImplSDL2_Shutdown();
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui::DestroyContext();
 	SDL_GL_DeleteContext(&GLContext);
 	SDL_DestroyWindow(Window);
 	SDL_Quit();
@@ -36,9 +40,12 @@ bool IApplication::Create(const char* Title, SDL_Rect Dimensions, unsigned int F
 		WindowCreationError("SDL_CreateWindow Failed");
 		return false;
 	}
+
+#ifdef _DEBUG_RENDERDOC_
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+#endif
 
 	GLContext = SDL_GL_CreateContext(Window);
 	if (!GLContext)
@@ -48,6 +55,14 @@ bool IApplication::Create(const char* Title, SDL_Rect Dimensions, unsigned int F
 	}
 	spdlog::info("App Window \"{}\" created successfully", Title);
 	UpdateScreenRect();
+
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGui::StyleColorsDark();
+	ImGui_ImplSDL2_InitForOpenGL(Window, GLContext);
+	ImGui_ImplOpenGL3_Init();
+
+
 	glewInit();
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
@@ -152,6 +167,7 @@ void IApplication::WindowCreationError(std::string error)
 
 void IApplication::EventTick(SDL_Event* event)
 {
+	ImGui_ImplSDL2_ProcessEvent(event);
 	switch (event->type)
 	{
 	case SDL_QUIT:
@@ -175,8 +191,14 @@ void IApplication::Begin()
 			EventTick(&event);
 		}
 		AppTick();
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplSDL2_NewFrame();
+		ImGui::NewFrame();
+		IWindow::DrawGUI();
+		ImGui::Render();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);;
 		DrawTick();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 		SDL_GL_SwapWindow(Window);
 	}
 }

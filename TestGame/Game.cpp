@@ -30,6 +30,10 @@ void Game::Initialize()
 	GameObject2.Position = { 5,0,0 };
 	GameObject2.Scale = { 2, 1, 1 };
 
+	Gui.ObjPtr1 = &GameObject1;
+	Gui.ObjPtr2 = &GameObject2;
+	Gui.ToggleEnabled();
+
 }
 
 // Calculate Game Logic Here Per frame
@@ -78,4 +82,27 @@ void Game::EventTick(SDL_Event* event)
 {
 
 	IApplication::EventTick(event);
+}
+
+TestGUI::TestGUI()
+{
+}
+
+void TestGUI::Draw()
+{
+	if (ImGui::Begin(WindowTitle, 0, NULL))
+	{
+		if (ObjPtr1) {
+			ImGui::SliderFloat("Object1X", &ObjPtr1->Position.x, -100.0f, 100.0f, "%f", 1);
+			ImGui::SliderFloat("Object1Y", &ObjPtr1->Position.y, -100.0f, 100.0f, "%f", 1);
+			ImGui::SliderFloat("Object1Z", &ObjPtr1->Position.z, -100.0f, 100.0f, "%f", 1);
+		}
+		if (ObjPtr2)
+		{
+			ImGui::SliderFloat("Object2X", &ObjPtr2->Position.x, -100.0f, 100.0f, "%f", 1);
+			ImGui::SliderFloat("Object2Y", &ObjPtr2->Position.y, -100.0f, 100.0f, "%f", 1);
+			ImGui::SliderFloat("Object2Z", &ObjPtr2->Position.z, -100.0f, 100.0f, "%f", 1);
+		}
+		ImGui::End();
+	}
 }

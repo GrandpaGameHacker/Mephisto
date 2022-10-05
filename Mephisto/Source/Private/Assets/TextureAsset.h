@@ -15,7 +15,7 @@ public:
 	void GetBPP(int& BPP);
 
 protected:
-	EFileMode GetFileMode() override { return EFileMode::Binary; }
+	EFileMode GetFileMode() override { return EFileMode::Binary;}
 	void LoadOpenGLTexture(void* textureData);
 	GLenum Target;
 	GLuint Object;

@@ -161,6 +161,9 @@
     <ClInclude Include="Source\Private\Assets\IStreamableAsset.h" />
     <ClInclude Include="Source\Private\Assets\IAsset.h" />
     <ClInclude Include="Source\Private\App\IApplication.h" />
+    <ClInclude Include="Source\Private\GUI\Backend\imgui_impl_opengl3.h" />
+    <ClInclude Include="Source\Private\GUI\Backend\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="Source\Private\GUI\Backend\imgui_impl_sdl.h" />
     <ClInclude Include="Source\Private\GUI\IWindow.h" />
     <ClInclude Include="Source\Private\Math\GameMath.h" />
     <ClInclude Include="Source\Private\ThirdParty\flecs\flecs.h" />
@@ -178,6 +181,8 @@
     <ClCompile Include="Source\Public\App\IApplication.cpp" />
     <ClCompile Include="Source\Public\Assets\IAsset.cpp" />
     <ClCompile Include="Source\Public\Assets\TextureAsset.cpp" />
+    <ClCompile Include="Source\Public\GUI\Backend\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Source\Public\GUI\Backend\imgui_impl_sdl.cpp" />
     <ClCompile Include="Source\Public\GUI\IWindow.cpp" />
     <ClCompile Include="Source\Public\Math\GameMath.cpp" />
   </ItemGroup>
