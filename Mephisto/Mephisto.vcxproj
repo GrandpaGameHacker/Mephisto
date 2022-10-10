@@ -162,17 +162,17 @@
     <ClInclude Include="Source\Public\Assets\IStreamableAsset.h" />
     <ClInclude Include="Source\Public\Assets\IAsset.h" />
     <ClInclude Include="Source\Public\App\IApplication.h" />
+    <ClInclude Include="Source\Public\Core\GameObject.h" />
     <ClInclude Include="Source\Public\GUI\Backend\imgui_impl_opengl3.h" />
     <ClInclude Include="Source\Public\GUI\Backend\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="Source\Public\GUI\Backend\imgui_impl_sdl.h" />
     <ClInclude Include="Source\Public\GUI\IWindow.h" />
     <ClInclude Include="Source\Public\Math\GameMath.h" />
-    <ClInclude Include="Source\Public\ThirdParty\flecs\flecs.h" />
     <ClInclude Include="Source\Public\ThirdParty\STB\stb_image.h" />
     <ClInclude Include="Source\Public\Assets\TextureAsset.h" />
+    <ClInclude Include="Source\Public\Types.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Public\ThirdParty\flecs\flecs.c" />
     <ClCompile Include="Source\Private\Camera\BasicCamera.cpp" />
     <ClCompile Include="Source\Private\Camera\ICamera.cpp" />
     <ClCompile Include="Source\Private\Assets\ModelAsset.cpp" />

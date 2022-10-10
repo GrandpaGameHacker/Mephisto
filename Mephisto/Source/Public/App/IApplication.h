@@ -1,5 +1,4 @@
 #pragma once
-#include "ThirdParty/flecs/flecs.h"
 #include <spdlog/spdlog.h>
 #include <gl/glew.h>
 #include <SDL2/SDL.h>
@@ -26,8 +25,6 @@ public:
 	float GetDeltaTime();
 	long long GetDeltaTimeNano();
 	void Begin();
-
-	flecs::world& GetECSWorld();
 
 private:
 	void EnableWindowsDpiScaling();
@@ -74,7 +71,5 @@ protected:
 	bool bIsRunning = true;
 	bool bIsWindowValid = true;
 	std::vector<std::string> args;
-
-	flecs::world ECSWorld;
 };
 

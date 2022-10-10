@@ -3,17 +3,24 @@
 #include <glm/gtc/quaternion.hpp>
 #include <random>
 #include <vector>
+#include <Types.h>
 
 // planning on adding ray casting/picking
-class Mers64
+
+class Mersienne
 {
 public:
-	Mers64();
-	Mers64(unsigned long long seed);
-	unsigned long long Next();
-	void Skip(unsigned long long n);
-	std::vector<unsigned long long> Next(unsigned long long n);
+	Mersienne();
+	Mersienne(uint64 seed);
+	uint64 Next();
+	uint64 Next(uint64 max, uint64 min);
+	float NextFloat(float max, float min);
+	double NextDouble(double max, double min);
+	void Skip(uint64 n);
+	std::vector<uint64> Next(uint64 n);
+	std::vector<float> NextFloat(uint64 n, float max, float min);
+	std::vector<double> NextDouble(uint64 n, float max, float min);
 private:
-	unsigned long long Seed;
+	uint64 Seed;
 	std::mt19937_64 MT;
 };

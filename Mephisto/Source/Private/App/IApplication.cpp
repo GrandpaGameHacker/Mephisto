@@ -203,11 +203,6 @@ void IApplication::Begin()
 	}
 }
 
-flecs::world& IApplication::GetECSWorld()
-{
-	return ECSWorld;
-}
-
 void IApplication::EnableWindowsDpiScaling()
 {
 	typedef enum PROCESS_DPI_AWARENESS

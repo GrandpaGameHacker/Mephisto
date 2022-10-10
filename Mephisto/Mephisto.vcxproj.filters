@@ -45,9 +45,6 @@
     <ClInclude Include="Source\Public\Camera\BasicCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Public\ThirdParty\flecs\flecs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Public\Math\GameMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -61,6 +58,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Public\GUI\Backend\imgui_impl_sdl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Core\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -90,9 +93,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Private\Camera\BasicCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Public\ThirdParty\flecs\flecs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Private\Math\GameMath.cpp">
