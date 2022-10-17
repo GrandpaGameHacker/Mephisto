@@ -128,6 +128,8 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <UseStandardPreprocessor>
+      </UseStandardPreprocessor>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -154,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Public\App\CommandLine.h" />
     <ClInclude Include="Source\Public\Camera\BasicCamera.h" />
     <ClInclude Include="Source\Public\Camera\ICamera.h" />
     <ClInclude Include="Source\Public\Assets\ModelAsset.h" />
@@ -162,17 +165,20 @@
     <ClInclude Include="Source\Public\Assets\IStreamableAsset.h" />
     <ClInclude Include="Source\Public\Assets\IAsset.h" />
     <ClInclude Include="Source\Public\App\IApplication.h" />
+    <ClInclude Include="Source\Public\Core\MephistoAssert.h" />
     <ClInclude Include="Source\Public\Core\GameObject.h" />
     <ClInclude Include="Source\Public\GUI\Backend\imgui_impl_opengl3.h" />
     <ClInclude Include="Source\Public\GUI\Backend\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="Source\Public\GUI\Backend\imgui_impl_sdl.h" />
     <ClInclude Include="Source\Public\GUI\IWindow.h" />
     <ClInclude Include="Source\Public\Math\GameMath.h" />
+    <ClInclude Include="Source\Public\Strings\StringUtilities.h" />
     <ClInclude Include="Source\Public\ThirdParty\STB\stb_image.h" />
     <ClInclude Include="Source\Public\Assets\TextureAsset.h" />
     <ClInclude Include="Source\Public\Types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Private\App\CommandLine.cpp" />
     <ClCompile Include="Source\Private\Camera\BasicCamera.cpp" />
     <ClCompile Include="Source\Private\Camera\ICamera.cpp" />
     <ClCompile Include="Source\Private\Assets\ModelAsset.cpp" />
@@ -186,6 +192,8 @@
     <ClCompile Include="Source\Private\GUI\Backend\imgui_impl_sdl.cpp" />
     <ClCompile Include="Source\Private\GUI\IWindow.cpp" />
     <ClCompile Include="Source\Private\Math\GameMath.cpp" />
+    <ClCompile Include="Source\Private\Strings\StringUtilities.cpp" />
+    <ClCompile Include="Source\Private\Core\MephistoAssert.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

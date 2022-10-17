@@ -11,6 +11,7 @@ class Game :
 {
 public:
     Game();
+    Game(int argc, char* argv[]);
     virtual ~Game();
     void Initialize() override;
     void AppTick() override;

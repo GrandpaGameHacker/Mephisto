@@ -24,6 +24,7 @@ public:
 	uint64 GetUniqueID() const;
 	std::string GetName() const;
 	std::shared_ptr<T> Get();
+	std::weak_ptr<T> GetWeak();
 
 protected:
 	uint64 UID = 0;
@@ -71,6 +72,13 @@ inline std::shared_ptr<T> GameObject<T>::Get()
 	{
 		spdlog::error("Object type {} with id {} doesn't exist anymore", GetTypeName(), GetUniqueID());
 		return nullptr;
+	}
+}
+template<class T>
+std::weak_ptr<T> GameObject<T>::GetWeak()
+{
+	if (Object) {
+		return std::weak_ptr<T>(Object);
 	}
 }
 

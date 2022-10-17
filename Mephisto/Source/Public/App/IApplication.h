@@ -5,13 +5,13 @@
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
+#include <App/CommandLine.h>
 
 class IApplication
 {
 public:
 	virtual ~IApplication();
 	IApplication() {};
-	IApplication(int argc, char *argv[]);
 
 	SDL_Window* GetAppWindow();
 	SDL_GLContext GetGLContext();
@@ -33,7 +33,7 @@ private:
 
 protected:
 
-	virtual void Initialize() = 0;
+	virtual void Initialize() {};
 
 	virtual void WindowEventDispatch(SDL_Event* event);
 
@@ -57,8 +57,8 @@ protected:
 	virtual void OnWindowDisplayChanged(SDL_Event* event) {};
 
 	virtual void EventTick(SDL_Event* event);
-	virtual void AppTick() = 0;
-	virtual void DrawTick() = 0;
+	virtual void AppTick() {};
+	virtual void DrawTick() {};
 
 	virtual void Exit(std::string ExitReason);
 	bool Create(const char* Title, SDL_Rect Dimensions, unsigned int Flags);
@@ -70,6 +70,5 @@ protected:
 	SDL_Rect ScreenRect = {};
 	bool bIsRunning = true;
 	bool bIsWindowValid = true;
-	std::vector<std::string> args;
 };
 

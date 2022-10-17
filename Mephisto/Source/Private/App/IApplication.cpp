@@ -13,15 +13,6 @@ IApplication::~IApplication()
 	SDL_Quit();
 }
 
-IApplication::IApplication(int argc, char* argv[])
-{
-    for (int i = 0; i < argc; i++)
-    {
-        std::string arg = argv[i];
-        args.push_back(arg);
-    }
-}
-
 bool IApplication::Create(const char* Title, SDL_Rect Dimensions, unsigned int Flags)
 {
     Name = Title;

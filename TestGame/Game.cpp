@@ -1,9 +1,16 @@
 #include "Game.h"
 #include <SDL2/SDL.h>
-
+#include <Core/MephistoAssert.h>
+#include <App/CommandLine.h>
+#include <Strings/StringUtilities.h>
 Game::Game()
 {
 
+}
+
+Game::Game(int argc, char* argv[])
+{
+	CommandLine::Initialize(argc, argv);
 }
 
 Game::~Game()
@@ -35,5 +42,6 @@ void Game::DrawTick()
 // Overload OnWindow... functions for window events
 void Game::EventTick(SDL_Event* event)
 {
+
 	IApplication::EventTick(event);
 }
